@@ -5,7 +5,11 @@ import { useState, useEffect } from 'react';
 
 const TodoList = () => {
     const [opencount, countOpenTodos] = useState(0);
-    const [todos, setTodos] = useState([]);
+    const [todos, setTodos] = useState(() => {
+        const items = localStorage.getItem("items")
+        const parsed = JSON.parse(items);
+        return parsed || [];
+    });
     const [textinput, settextinput] = useState("");
 
     const changeText = (e) => {
@@ -17,6 +21,7 @@ const TodoList = () => {
 
         const newTodos = [...todos, {description: textinput, done: false}];
         setTodos(newTodos);
+        settextinput("");
     }
 
     const countOpen = () => {
@@ -61,6 +66,7 @@ const TodoList = () => {
                     type="text" 
                     placeholder="Neues Todo..."
                     className="col-span-2 py-2 text-gray-900"
+                    value={textinput}
                 ></input>
                 <input 
                     onClick={submit}
