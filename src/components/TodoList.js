@@ -2,15 +2,22 @@ import React from 'react';
 import Todo from './Todo';
 import { useState, useEffect } from 'react';
 
-const alltodos = [
-    {description: "Einkaufen", done: true},
-    {description: "Sport", done: false},
-    {description: "Programmieren", done: false},
-];
 
 const TodoList = () => {
     const [opencount, countOpenTodos] = useState(0);
-    const [todos, setTodos] = useState(alltodos);
+    const [todos, setTodos] = useState([]);
+    const [textinput, settextinput] = useState("");
+
+    const changeText = (e) => {
+        settextinput(e.target.value);
+    }
+
+    const submit = (e) => {
+        e.preventDefault();
+
+        const newTodos = [...todos, {description: textinput, done: false}];
+        setTodos(newTodos);
+    }
 
     const countOpen = () => {
         const donetodos = todos.filter((item) => {
@@ -38,6 +45,7 @@ const TodoList = () => {
 
     useEffect(() => {
         countOpen();
+        localStorage.setItem("items", JSON.stringify(todos));
     }, [todos]);
 
 
@@ -47,6 +55,22 @@ const TodoList = () => {
         <div className="text-center bg-gray-900 text-white text-3xl py-4 front-semibold">
             <h1 className="text-3xl">Unsere Todos</h1>
             <h2>Offene Todo: {opencount}</h2>
+            <form className="grid grid-cols-3 py-2">
+                <input 
+                    onChange={changeText}
+                    type="text" 
+                    placeholder="Neues Todo..."
+                    className="col-span-2 py-2 text-gray-900"
+                ></input>
+                <input 
+                    onClick={submit}
+                    type="submit"
+                    value="Add Todo"
+                    className="col-span-1 text-gray-900 cursor-pointer"
+                > 
+                    add Todo 
+                </input>
+            </form>
         </div>
 
         {todos.map((item, index) => {
