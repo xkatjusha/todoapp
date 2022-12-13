@@ -74,7 +74,6 @@ const TodoList = () => {
                     value="Add Todo"
                     className="col-span-1 text-gray-900 cursor-pointer"
                 > 
-                    add Todo 
                 </input>
             </form>
         </div>
