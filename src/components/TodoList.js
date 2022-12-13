@@ -56,23 +56,23 @@ const TodoList = () => {
 
 
   return (
-    <div className="shadow-sm hover:shadow-lg">
-        <div className="text-center bg-gray-900 text-white text-3xl py-4 front-semibold">
-            <h1 className="text-3xl">Unsere Todos</h1>
+    <div className='shadow-sm hover:shadow-lg'>
+        <div className='text-center bg-gray-900 text-white text-3xl py-4 front-semibold'>
+            <h1 className='text-3xl'>Unsere Todos</h1>
             <h2>Offene Todo: {opencount}</h2>
-            <form className="grid grid-cols-3 py-2">
+            <form className='grid grid-cols-3 py-2'>
                 <input 
                     onChange={changeText}
                     type="text" 
                     placeholder="Neues Todo..."
-                    className="col-span-2 py-2 text-gray-900"
+                    className='col-span-2 py-2 text-gray-900'
                     value={textinput}
                 ></input>
                 <input 
                     onClick={submit}
                     type="submit"
                     value="Add Todo"
-                    className="col-span-1 text-gray-900 cursor-pointer"
+                    className='col-span-1 text-gray-900 cursor-pointer'
                 > 
                 </input>
             </form>
